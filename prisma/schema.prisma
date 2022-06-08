@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://admin:admin@localhost:5432/postgres"
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  userId    String     @id @default(cuid())
+  username  String     @unique
+  email     String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  firstName String
+  lastName  String
+  picture   String     @default("https://ibb.co/R62qmRY")
+  comments  Comment[]
+  followers Follow[]   @relation("Followers")
+  following Follow[]   @relation("Following")
+  messages  Message[]
+  posts     Post[]
+  postLikes PostLike[]
+  reblog    Reblog[]
+}
+
+model Follow {
+  id         Int    @id @default(autoincrement())
+  user       User?  @relation("Followers", fields: [userId], references: [userId], onDelete: Cascade)
+  userId     String
+  follower   User?  @relation("Following", fields: [followerId], references: [userId], onDelete: Cascade)
+  followerId String
+
+  @@unique([userId, followerId])
+}
+
+model Post {
+  postId    String     @id @default(cuid())
+  title     String
+  content   String
+  createdAt DateTime   @default(now())
+  isEdited  Boolean    @default(false)
+  editedAt  DateTime   @updatedAt
+  location  String?
+  userId    String?
+  author    User?      @relation(fields: [userId], references: [userId])
+  comment   Comment[]
+  like      PostLike[]
+  reblog    Reblog[]
+}
+
+model PostLike {
+  id     String @id @default(cuid())
+  postId String
+  userId String
+  post   Post   @relation(fields: [postId], references: [postId])
+  user   User   @relation(fields: [userId], references: [userId])
+  @@unique([postId, userId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  postId    String
+  userId    String
+  post      Post     @relation(fields: [postId], references: [postId])
+  user      User     @relation(fields: [userId], references: [userId])
+}
+
+model Reblog {
+  id     String @id @default(cuid())
+  postId String
+  userId String
+  post   Post   @relation(fields: [postId], references: [postId])
+  user   User   @relation(fields: [userId], references: [userId])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  userId     String
+  content    String
+  sentAt     DateTime @default(now())
+  receiverId String
+  senderId   User     @relation(fields: [userId], references: [userId])
+}
