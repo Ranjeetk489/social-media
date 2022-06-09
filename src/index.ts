@@ -14,31 +14,31 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     csrfPrevention: true,
-    formatResponse: (response, requestContext) => {
-        if(response.errors && !requestContext.request.variables?.password) {
-            if(requestContext.response.http) {
-                requestContext.response.http.status = 401;
-            }
-            else if (response.data?.authenticate || response.data.refresh) {
-                const tokenExpireDate = new Date();
-                tokenExpireDate.setDate(
-                    tokenExpireDate.getDate() + 60 * 60 * 24 * 7
-                );
+    // formatResponse: (response, requestContext) => {
+    //     if(response.errors && !requestContext.request.variables?.password) {
+    //         if(requestContext.response.http) {
+    //             requestContext.response.http.status = 401;
+    //         }
+    //         else if (response.data?.authenticate || response.data.refresh) {
+    //             const tokenExpireDate = new Date();
+    //             tokenExpireDate.setDate(
+    //                 tokenExpireDate.getDate() + 60 * 60 * 24 * 7
+    //             );
                 
-            }
-        }
-    },
+    //         }
+    //     }
+    // },
     context: ({ req }) => ({
         claims: getClaims(req.headers.authorization)
     })
 });
+const app = express();
+app.use(cors());
 
 server.start().then(() => {
     server.applyMiddleware({ app });
 });
 
-const app = express();
-app.use(cors());
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
