@@ -17,6 +17,7 @@ model User {
   firstName String
   lastName  String
   picture   String     @default("https://ibb.co/R62qmRY")
+  bio       String?
   comments  Comment[]
   followers Follow[]   @relation("Followers")
   following Follow[]   @relation("Following")
@@ -57,6 +58,7 @@ model PostLike {
   userId String
   post   Post   @relation(fields: [postId], references: [postId])
   user   User   @relation(fields: [userId], references: [userId])
+
   @@unique([postId, userId])
 }
 

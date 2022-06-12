@@ -1,8 +1,9 @@
-import {gql} from 'apollo-server';
+import { gql } from 'apollo-server';
 
 
 export default gql`
     type Query {
+    #user related Queries
     getUserDetails(userId: ID!): User!
 
     #follow related queries
@@ -19,9 +20,6 @@ export default gql`
     getComments(postId: ID!): [Comment!]!
     
     #like related queries
-    #
-
-        
     }
 
     type User {
@@ -31,6 +29,7 @@ export default gql`
         picture: String
         firstName: String
         lastName: String
+        bio: String
         accesstoken: String
         refreshToken: String
         followers: [Follow!]!
@@ -80,8 +79,12 @@ export default gql`
         post: [Post]
     }
     type Mutation {
+        #auth related mutations
         loginUser(email:String!, password: String!): User!
         registerUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): User!
+
+        #picture related Mutations
+        createPicture(userId: ID!, picture: String!): String!
 
         #comment related mutations
         addComment(postId: ID!, content: String!): Comment!

@@ -1,15 +1,19 @@
 import { config } from 'dotenv';
+import { v2 as cloudinary } from 'cloudinary';
 const jwt = require('jsonwebtoken');
 
 function getClaims(token) {
     let user;
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if(err) {
+        if (err) {
             return err;
         }
-        user = decoded.userId; 
+        user = decoded.userId;
     });
     return user;
 }
 
 export default getClaims;
+
+
+
