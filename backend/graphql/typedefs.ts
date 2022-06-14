@@ -30,7 +30,7 @@ export default gql`
         firstName: String
         lastName: String
         bio: String
-        accesstoken: String
+        accessToken: String
         refreshToken: String
         followers: [Follow!]!
         following: [Follow!]!

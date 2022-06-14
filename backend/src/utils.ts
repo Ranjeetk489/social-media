@@ -1,5 +1,4 @@
 import { config } from 'dotenv';
-import { v2 as cloudinary } from 'cloudinary';
 const jwt = require('jsonwebtoken');
 
 function getClaims(token) {

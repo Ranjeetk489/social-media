@@ -17,7 +17,7 @@ model User {
   firstName String
   lastName  String
   picture   String     @default("https://ibb.co/R62qmRY")
-  bio       String?
+  bio       String     @default("Hi! I'm a new user.")
   comments  Comment[]
   followers Follow[]   @relation("Followers")
   following Follow[]   @relation("Following")

@@ -2,7 +2,7 @@ import prisma from '../../prisma/prisma';
 import bcrypt from 'bcryptjs';
 const jwt = require('jsonwebtoken');
 
-const loginUser = async (parent, args, { res }) => {
+const loginUser = async (parent, args) => {
     const { email, password } = args;
     const user = await prisma.user.findFirst({ where: { email } });
     if (!user) {
@@ -12,21 +12,17 @@ const loginUser = async (parent, args, { res }) => {
     if (!isMatch) {
         throw new Error('Password is incorrect');
     }
+    const { userId, firstName, lastName, username, bio, picture } = user;
     const accessToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "15min" });
     const refreshToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    return {
-        user,
-        accessToken,
-        refreshToken
-    }
+
+    return { accessToken, refreshToken, user: { userId, firstName, lastName, username, bio, picture } };
 }
 
 
-const registerUser = async (parent, args, context) => {
+const registerUser = async (parent, args) => {
     const { username, email, password, firstName, lastName } = args;
     const userExists = await prisma.user.findFirst({ where: { email } });
-    console.log(args)
-    console.log(userExists)
     if (userExists) {
         throw new Error('User already exists');
     }
@@ -41,12 +37,18 @@ const registerUser = async (parent, args, context) => {
             lastName,
         }
     });
-    const accesstoken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "15min" });
+    const accessToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "15min" });
     const refreshToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
-
+    const { picture, userId } = user;
     return {
-        accesstoken: accesstoken,
-        refreshToken: refreshToken,
+        accessToken,
+        refreshToken,
+        userId,
+        picture,
+        firstName,
+        lastName,
+        username,
+        bio: user.bio,
     }
 }
 

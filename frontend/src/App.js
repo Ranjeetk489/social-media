@@ -6,6 +6,7 @@ function App() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageData, setImageData] = useState("");
 
+
   const handleClick = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -21,6 +22,7 @@ function App() {
       <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
       <button onClick={handleClick}>Upload</button>
       {imageData && < AdvancedImage cldImg={imageData} />}
+
     </div>
   );
 }
