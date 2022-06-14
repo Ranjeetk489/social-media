@@ -1,22 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 // import App from './App';
-import Dummy from './Dummy';
-import client from './apollo/client/ApolloProvider';
-import { ApolloProvider } from '@apollo/client';
-import reportWebVitals from './reportWebVitals';
+import client from "./apollo/client/ApolloProvider";
+
+import { ApolloProvider } from "@apollo/client";
+import reportWebVitals from "./reportWebVitals";
+import { Login } from "./components";
 // import { Provider } from 'react-redux';
 // import { store } from './store/store';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
   <React.StrictMode>
     <ApolloProvider client={client}>
-
-      <Dummy />
-
+      <Login></Login>
     </ApolloProvider>
   </React.StrictMode>
 );
