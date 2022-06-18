@@ -7,7 +7,7 @@ import {onError} from "@apollo/client/link/error";
 
 
 const httpLink = new HttpLink({
-    uri: "http://localhost:4000/graphql",
+    uri: "https://socialmedia-v1.herokuapp.com/graphql",
     // credentials: "include"
 }); 
 

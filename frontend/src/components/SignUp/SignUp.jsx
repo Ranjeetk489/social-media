@@ -11,7 +11,7 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="c-login  absolute top-[5%] left-1/3 p-12 min-w-fit shadow-md">
+        <div className="c-login top-[5%] p-12 min-w-fit shadow-none md:w-1/4 md:absolute md:left-1/3  md:shadow-md">
             <h2 className="text-3xl mb-1">Sign up</h2>
             <div className="text-slate-900 text-base mb-4">Portal to a whole new world!</div>
             <Formik
@@ -123,7 +123,7 @@ const SignUp = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="bg-primary p-2 text-white text-xl w-full mt-4  self-center rounded-xl active:bg-primary-dark focus:ring">
+                            className="bg-primary p-2 text-white text-xl w-80 mt-4 rounded-xl active:bg-primary-dark focus:ring">
                             {loading ? <ScaleLoader height={10} speedMultiplier={0.75}/> : "Sign up"}
                         </button>
                         {error && <div className="mt-2 text-primary-dark">{error.message}</div>}
@@ -131,7 +131,7 @@ const SignUp = () => {
                 )}
             </Formik>
             <div className="text-slate-700 mt-6">Already a user?</div>
-                <button className="text-slate-800 p-2 text-xl w-full mt-1  rounded-xl bg-white border-2 border-slate-800 hover:bg-slate-800 hover:text-white active:bg-slate-900 focus:ring" onClick= {() => {navigate('/sign_in')}}>Sign in</button>
+                <button className="text-slate-800 p-2 text-xl w-80 mt-1  rounded-xl bg-white border-2 border-slate-800 hover:bg-slate-800 hover:text-white active:bg-slate-900 focus:ring" onClick= {() => {navigate('/sign_in')}}>Sign in</button>
         </div>
     );
 };
