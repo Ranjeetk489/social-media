@@ -14,8 +14,8 @@ model User {
   email     String     @unique
   password  String
   createdAt DateTime   @default(now())
-  firstName String
-  lastName  String
+  firstname String
+  lastname  String
   picture   String     @default("https://ibb.co/R62qmRY")
   bio       String     @default("Hi! I'm a new user.")
   comments  Comment[]

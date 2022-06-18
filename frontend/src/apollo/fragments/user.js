@@ -4,8 +4,8 @@ export const USER_SUMMARY = gql`
     fragment UserSummary on User {
         userId
         username
-        firstName
-        lastName
+        firstname
+        lastname
         bio
         picture
     }

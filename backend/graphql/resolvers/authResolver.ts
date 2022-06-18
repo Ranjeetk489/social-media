@@ -12,16 +12,16 @@ const loginUser = async (parent, args) => {
     if (!isMatch) {
         throw new Error('Password is incorrect');
     }
-    const { userId, firstName, lastName, username, bio, picture } = user;
-    const accessToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "15min" });
+    const { userId, firstname, lastname, username, bio, picture } = user;
+    const accessToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "5s" });
     const refreshToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-    return { accessToken, refreshToken, user: { userId, firstName, lastName, username, bio, picture } };
+    return { accessToken, refreshToken,  userId, firstname, lastname, username, bio, picture  };
 }
 
 
 const registerUser = async (parent, args) => {
-    const { username, email, password, firstName, lastName } = args;
+    const { username, email, password, firstname, lastname } = args;
     const userExists = await prisma.user.findFirst({ where: { email } });
     if (userExists) {
         throw new Error('User already exists');
@@ -33,8 +33,8 @@ const registerUser = async (parent, args) => {
             username,
             email,
             password: hashedPassword,
-            firstName,
-            lastName,
+            firstname,
+            lastname,
         }
     });
     const accessToken = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "15min" });
@@ -45,8 +45,8 @@ const registerUser = async (parent, args) => {
         refreshToken,
         userId,
         picture,
-        firstName,
-        lastName,
+        firstname,
+        lastname,
         username,
         bio: user.bio,
     }

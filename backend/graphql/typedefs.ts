@@ -27,8 +27,8 @@ export default gql`
         username: String
         email: String
         picture: String
-        firstName: String
-        lastName: String
+        firstname: String
+        lastname: String
         bio: String
         accessToken: String
         refreshToken: String
@@ -81,7 +81,7 @@ export default gql`
     type Mutation {
         #auth related mutations
         loginUser(email:String!, password: String!): User!
-        registerUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): User!
+        registerUser(username: String!, email: String!, password: String!, firstname: String!, lastname: String!): User!
 
         #picture related Mutations
         createPicture(userId: ID!, picture: String!): String!
