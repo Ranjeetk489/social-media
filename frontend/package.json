@@ -6,22 +6,26 @@
     "@apollo/client": "^3.6.6",
     "@cloudinary/react": "^1.4.1",
     "@cloudinary/url-gen": "^1.8.0",
-    "@craco/craco": "^6.4.3",
-    "@emotion/styled": "^11.9.3",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "apollo": "2.33.10",
-    "axios": "^0.27.2",
-    "babel-plugin-macros": "^3.1.0",
+    "autoprefixer": "^10.4.7",
+    "formik": "^2.2.9",
     "graphql": "^15.7.2",
+    "js-cookie": "^3.0.1",
+    "postcss": "^8.4.14",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-icons": "^4.4.0",
+    "react-modal": "^3.15.1",
     "react-redux": "^8.0.2",
-    "react-scripts": "^4.0.0",
-    "styled-components": "^5.3.5",
-    "twin.macro": "^2.8.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "react-spinners": "^0.12.0",
+    "tailwindcss": "^3.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -51,13 +55,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@apollo/rover": "^0.7.0",
-    "autoprefixer": "^10.4.7",
-    "babel-plugin-styled-components": "^2.0.7",
-    "babel-plugin-twin": "^1.0.2",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.2"
   }
 }

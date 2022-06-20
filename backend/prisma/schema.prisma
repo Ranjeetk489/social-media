@@ -4,8 +4,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://admin:admin@localhost:5432/postgres"
-  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  // url      = "postgres://admin:admin@localhost:5432/postgres"
+  url = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
@@ -14,8 +15,8 @@ model User {
   email     String     @unique
   password  String
   createdAt DateTime   @default(now())
-  firstName String
-  lastName  String
+  firstname String
+  lastname  String
   picture   String     @default("https://ibb.co/R62qmRY")
   bio       String     @default("Hi! I'm a new user.")
   comments  Comment[]

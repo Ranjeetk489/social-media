@@ -5,8 +5,8 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
     "picture" TEXT NOT NULL DEFAULT E'https://ibb.co/R62qmRY',
     "bio" TEXT NOT NULL DEFAULT E'Hi! I\'m a new user.',
 

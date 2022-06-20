@@ -1,6 +1,10 @@
+import { AuthenticationError } from 'apollo-server-express';
 import prisma from '../../prisma/prisma';
 
 const getPosts = async (parent, args, context) => {
+    if(!context.claims) {
+        throw new AuthenticationError('You are not logged in');
+    }
     const posts = await prisma.post.findMany({
         where: {
             userId: args.userId,
